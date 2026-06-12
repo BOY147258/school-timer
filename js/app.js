@@ -660,7 +660,14 @@ function init() {
 }
 
 // Start
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    init();
+  } catch (e) {
+    console.error('初始化错误:', e);
+    document.getElementById('loading').classList.add('hidden');
+  }
+});
 
 // Export functions for onclick handlers
 window.selectMode = selectMode;
@@ -672,3 +679,5 @@ window.stopRace = stopRace;
 window.abortRace = abortRace;
 window.nextGroup = nextGroup;
 window.exportResults = exportResults;
+window.showFinishView = showFinishView;
+window.hideFinishView = hideFinishView;
